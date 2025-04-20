@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funny Love Game</title>
+    <style>
+        #questionContainer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+        }
+
+        #noBtn {
+            position: absolute;
+        }
+
+        #hearLoader {
+            display: none;
+        }
+
+        #resultContainer {
+            width: 100%;
+            height: 100vh;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+           
+        }
+    </style>
+</head>
+<body>
+
+<div id="questionContainer">
+    <h1>Надад хайртай юу? 😄</h1>
+    <button id="yesBtn">Тийм</button>
+    <button id="noBtn">Үгүй</button>
+    <img src="muur.png" width="200" style="margin-top: 20px;">
+</div>
+
+
+<div id="resultContainer">
+    <h1>Би мэднээ ❤️</h1>
+    <video id="gifResult" autoplay loop muted>
+        <source src="your-gif-or-video.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionContainer = document.getElementById("questionContainer");
+    const hearLoader = document.getElementById("hearLoader");
+    const resultContainer = document.getElementById("resultContainer");
+    const gifResult = document.getElementById("gifResult");
+
+    noBtn.addEventListener("mouseover", () => {
+        const newX = Math.floor(Math.random() * questionContainer.offsetWidth);
+        const newY = Math.floor(Math.random() * questionContainer.offsetHeight);
+
+        noBtn.style.left = `${newX}px`;
+        noBtn.style.top = `${newY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+        questionContainer.style.display = "none";
+        hearLoader.style.display = "block";
+
+        setTimeout(() => {
+            hearLoader.style.display = "none";
+            resultContainer.style.display = "inherit";
+            gifResult.play();
+        }, 3000);
+    });
+</script>
+
+</body>
+</html>
